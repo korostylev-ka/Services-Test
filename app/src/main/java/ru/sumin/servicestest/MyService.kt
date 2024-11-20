@@ -25,7 +25,7 @@ class MyService: Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val start = intent?.getIntExtra(EXTRA_START, 0) ?: 0
         coroutineScope.launch {
-            for (i in start until start + 100) {
+            for (i in start until start + 20) {
                 delay(1000)
                 log("Timer $i")
             }
@@ -37,8 +37,9 @@ class MyService: Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        coroutineScope.cancel()
         log("onDestroy")
+        coroutineScope.cancel()
+
     }
 
     private fun log(message: String) {
