@@ -39,6 +39,8 @@
 
 
         </service>
+        <service android:name=".MyIntentService2">
+        </service>
     </application>
 
 </manifest>

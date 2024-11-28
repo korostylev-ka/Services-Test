@@ -40,12 +40,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.jobScheduler.setOnClickListener {
             val componentName = ComponentName(this, MyJobService::class.java)
-//объект, содержащий все требования для сервиса
+            //объект, содержащий все требования для сервиса
             val jobInfo = JobInfo.Builder(MyJobService.JOB_ID, componentName)
-//                .setRequiresCharging(true)
-//                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED) //только от wi-fi
-//                .setExtras(MyJobService.newBundle(page++))
-                //.setPersisted(true) //автоматический запуск сервиса после перезагрузки устройства
+                .setRequiresCharging(false)
                 .build()
 
             val jobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
@@ -56,6 +53,8 @@ class MainActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val intent = MyJobService.newIntent(page++)
                 jobScheduler.enqueue(jobInfo, JobWorkItem(intent))
+            } else {
+                startService(MyIntentService2.newIntent(this, page++))
             }
         }
     }
@@ -76,8 +75,6 @@ class MainActivity : AppCompatActivity() {
             .setContentText("Text")
             .setSmallIcon(R.drawable.ic_launcher_background)
             .build()
-
-
         notificationManager.notify(1, notification)
     }
 

@@ -38,22 +38,7 @@ class MyJobService: JobService() {
                 }
                 jobFinished(p0, false)
             }
-
-
         }
-//        через PersistableBundle
-//        val page = p0?.extras?.getInt(PAGE) ?: 0
-//
-//        coroutineScope.launch {
-//            for (i in 0 until 5) {
-//                delay(1000)
-//                log("Timer $i $page")
-//            }
-//
-////            true если нужно будет перезапустить сервис через какое то время
-//            jobFinished(p0, true)
-//        }
-//        log("onStartJob")
 //        возвращаем true если сервис еще выполняется(например асинхронная работа)
         return true
     }
@@ -86,12 +71,6 @@ class MyJobService: JobService() {
         const val JOB_ID = 11
         private const val PAGE = "page"
 
-//        для запоминания состояния
-//        fun newBundle(page: Int): PersistableBundle {
-//            return PersistableBundle().apply {
-//                putInt(PAGE, page)
-//            }
-//        }
         fun newIntent(page: Int): Intent {
             return Intent().apply {
                 putExtra(PAGE, page)
