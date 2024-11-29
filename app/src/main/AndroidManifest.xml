@@ -7,6 +7,7 @@
 
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -40,6 +41,10 @@
 
         </service>
         <service android:name=".MyIntentService2">
+        </service>
+        <service android:name=".MyJobIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+
         </service>
     </application>
 
